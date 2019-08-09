@@ -26,13 +26,9 @@ public class DataSource {
     public DataSource() {
         Gson gson = new GsonBuilder().create();
 
-        HttpLoggingInterceptor logger = new HttpLoggingInterceptor();
-        logger.level(HttpLoggingInterceptor.Level.BODY);
-
         this.dataApi = new Retrofit.Builder()
                 .baseUrl("https://jobs.github.com/")
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(new OkHttpClient.Builder().addInterceptor(logger).build())
                 .build()
                 .create(DataApi.class);
     }
